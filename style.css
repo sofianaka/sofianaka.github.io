@@ -1,0 +1,168 @@
+/* Portfólio da Sofia Nakamaru */
+
+:root {
+    /* ---- cores: pra mudar o tema do site, é só mexer aqui ---- */
+    --escura: #2E1A47;       /* roxo escuro do topo e do rodapé */
+    --destaque: #6B3FA0;     /* roxo mais vivo dos botões e detalhes */
+    --papel: #F8F5FC;        /* fundo claro da página */
+    --papel-2: #ECE5F6;      /* fundo da seção "Sobre mim" */
+    --linha: #DCD2EC;        /* linhas e bordas */
+    --tinta: #1F1630;        /* cor do texto */
+    --tinta-suave: #5E5470;  /* texto secundário */
+    --texto-claro: #DED5EE;  /* texto sobre o fundo escuro */
+
+    /* cores dos neurônios e dos desenhos */
+    --pessego: #F2A6B8;
+    --mostarda: #E3B04B;
+    --verde-agua: #5FB3A8;
+    --lilas: #C3A6F0;
+
+    --fonte-titulo: 'Grandstander', 'Trebuchet MS', sans-serif;
+    --fonte-texto: 'Figtree', 'Segoe UI', sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+    margin: 0;
+    background: var(--papel);
+    color: var(--tinta);
+    font-family: var(--fonte-texto);
+    font-size: 1.0625rem;
+    line-height: 1.6;
+}
+
+h1, h2, h3 { font-family: var(--fonte-titulo); line-height: 1.15; margin: 0; }
+p { margin: 0 0 1rem; }
+
+/* largura máxima do conteúdo, alinhado à esquerda */
+.miolo { max-width: 1040px; margin: 0 auto; padding: 0 1.5rem; }
+
+a:focus-visible { outline: 3px solid var(--mostarda); outline-offset: 3px; }
+
+/* ---------- botões ---------- */
+.botao {
+    display: inline-block;
+    padding: 0.6rem 1.3rem;
+    border-radius: 999px;
+    border: 2px solid transparent;
+    font-weight: 600;
+    text-decoration: none;
+}
+.botao-claro    { background: var(--papel); color: var(--escura); }
+.botao-contorno { border-color: rgba(251, 244, 238, 0.45); color: var(--papel); }
+.botao-cheio    { background: var(--destaque); color: white; }
+.botao-linha    { border-color: var(--destaque); color: var(--destaque); }
+.botao-claro:hover, .botao-cheio:hover { filter: brightness(1.08); }
+.botao-contorno:hover { border-color: var(--papel); }
+.botao-linha:hover { background: var(--destaque); color: white; }
+
+/* ---------- topo ---------- */
+.topo { background: var(--escura); color: var(--papel); padding: 5.5rem 0 4.5rem; }
+.topo-ola { font-size: 1.25rem; color: var(--pessego); margin-bottom: 0.2rem; }
+.topo h1 { font-size: clamp(2.8rem, 8vw, 5.5rem); font-weight: 700; }
+.topo-texto { max-width: 32rem; font-size: 1.2rem; color: var(--texto-claro); margin: 1.2rem 0 2rem; }
+.topo-links { display: flex; flex-wrap: wrap; gap: 0.7rem; }
+
+/* topo em duas colunas: texto à esquerda, rede neural à direita */
+.topo-grade { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 2rem; align-items: center; }
+
+/* rede neural desenhada em SVG pelo script.js */
+.rede { width: 100%; max-width: 440px; justify-self: end; }
+.ligacao { stroke: rgba(251, 244, 238, 0.16); stroke-width: 1.5; transition: stroke 0.25s, stroke-width 0.25s; }
+.ligacao.ativa { stroke: var(--pessego); stroke-width: 3; }
+.neuronio { fill: var(--escura); stroke-width: 3; transition: fill 0.25s; }
+.camada-0 { stroke: var(--verde-agua); }
+.camada-1 { stroke: var(--mostarda); }
+.camada-2 { stroke: var(--lilas); }
+.camada-3 { stroke: var(--pessego); }
+.camada-0.ativo { fill: var(--verde-agua); }
+.camada-1.ativo { fill: var(--mostarda); }
+.camada-2.ativo { fill: var(--lilas); }
+.camada-3.ativo { fill: var(--pessego); }
+
+/* ---------- seções ---------- */
+.secao { padding: 4.5rem 0; }
+.secao h2, .rodape h2 { font-size: clamp(1.9rem, 4vw, 2.6rem); font-weight: 700; margin-bottom: 0.6rem; }
+.secao-intro { max-width: 34rem; color: var(--tinta-suave); margin-bottom: 2.5rem; }
+
+/* ---------- projetos ---------- */
+.projeto {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 2.2rem;
+    align-items: center;
+    padding: 2rem 0;
+    border-top: 2px solid var(--linha);
+}
+.projeto h3 { font-size: 1.6rem; font-weight: 700; margin-bottom: 0.7rem; }
+.projeto-texto p { max-width: 38rem; }
+.projeto-feito { color: var(--tinta-suave); font-size: 0.95rem; }
+.projeto-links { display: flex; flex-wrap: wrap; gap: 0.7rem; margin-top: 1.2rem; }
+
+/* cada projeto tem um desenho feito só com CSS */
+.projeto-figura { height: 200px; border-radius: 18px; padding: 1.4rem; overflow: hidden; }
+
+/* 1: barras, como o gráfico de reclamações do analisador */
+.figura-barras {
+    background: white;
+    border: 2px solid var(--linha);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.6rem;
+}
+.figura-barras span { height: 18px; border-radius: 0 6px 6px 0; background: var(--destaque); }
+
+/* 2: estante, como o topo do chat com artigos */
+.figura-estante {
+    background: var(--escura);
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 5px;
+    padding-bottom: 0;
+    border-bottom: 12px solid #C9A27A;
+}
+.figura-estante span { width: 24px; border-radius: 3px 3px 0 0; }
+.figura-estante .tombado { transform: rotate(-9deg); transform-origin: bottom right; margin: 0 8px 0 2px; }
+
+/* 3: balões, como a conversa do bot no Telegram */
+.figura-conversa {
+    background: var(--verde-agua);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.5rem;
+}
+.balao { max-width: 85%; padding: 0.45rem 0.8rem; border-radius: 14px; font-size: 0.85rem; line-height: 1.3; }
+.balao-pessoa { align-self: flex-end; background: var(--escura); color: var(--papel); border-bottom-right-radius: 4px; }
+.balao-bot { align-self: flex-start; background: white; color: var(--tinta); border-bottom-left-radius: 4px; }
+
+/* ---------- sobre ---------- */
+.secao-sobre { background: var(--papel-2); }
+.sobre-grade { display: grid; grid-template-columns: 1fr 1fr; gap: 3.5rem; }
+.sobre-grade p { max-width: 32rem; }
+.fatos { margin: 0.4rem 0 0; }
+.fatos dt { font-family: var(--fonte-titulo); font-weight: 700; color: var(--destaque); }
+.fatos dd { margin: 0 0 1.2rem; }
+
+/* ---------- rodapé ---------- */
+.rodape { background: var(--escura); color: var(--papel); padding: 4rem 0; }
+.rodape p { color: var(--texto-claro); margin-bottom: 1.5rem; }
+
+/* ---------- telas pequenas ---------- */
+@media (max-width: 760px) {
+    .topo { padding: 4rem 0 3rem; }
+    .topo-grade { grid-template-columns: 1fr; }
+    .rede { max-width: 300px; justify-self: start; margin-top: 1rem; }
+    .projeto { grid-template-columns: 1fr; gap: 1.3rem; }
+    .projeto-figura { height: 170px; }
+    .sobre-grade { grid-template-columns: 1fr; gap: 1.5rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+}

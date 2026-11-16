@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sofia Nakamaru | Portfólio</title>
+    <meta name="description" content="Portfólio de Sofia Nakamaru, estudante de Engenharia da Computação na UFPA, campus Castanhal. Projetos com IA generativa e modelos de linguagem.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;600&family=Grandstander:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ========== TOPO ========== -->
+    <header class="topo">
+        <div class="miolo topo-grade">
+            <div>
+                <p class="topo-ola">Oi, eu sou a</p>
+                <h1>Sofia Nakamaru</h1>
+                <p class="topo-texto">
+                    Estudo Engenharia da Computação na UFPA, campus Castanhal, e
+                    construo projetos com IA generativa: modelos de linguagem
+                    aplicados a dados e problemas reais.
+                </p>
+                <nav class="topo-links" aria-label="Links principais">
+                    <a class="botao botao-claro" href="#projetos">Ver os projetos</a>
+                    <a class="botao botao-contorno" href="https://github.com/sofianaka">GitHub</a>
+                    <a class="botao botao-contorno" href="https://www.linkedin.com/in/sofia-nakamaru/">LinkedIn</a>
+                </nav>
+            </div>
+
+            <!-- Desenho de uma rede neural. Os neurônios, as ligações e a
+                 animação do sinal são criados pelo script.js. -->
+            <svg class="rede" id="rede" viewBox="0 0 420 360" aria-hidden="true"></svg>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- ========== PROJETOS ========== -->
+        <section class="secao" id="projetos">
+            <div class="miolo">
+                <h2>Projetos</h2>
+            
+
+                <!-- Projeto 1 -->
+                <article class="projeto">
+                    <div class="projeto-figura figura-barras" aria-hidden="true">
+                        <span style="width: 92%"></span>
+                        <span style="width: 78%"></span>
+                        <span style="width: 55%"></span>
+                        <span style="width: 44%"></span>
+                        <span style="width: 30%"></span>
+                    </div>
+                    <div class="projeto-texto">
+                        <h3>Analisador de avaliações de delivery</h3>
+                        <p>
+                            Um modelo lê 300 avaliações reais do app do iFood no Google
+                            Play e classifica o sentimento e o assunto de cada uma. Na
+                            amostra, a maior reclamação não foi atraso na entrega, e sim
+                            problemas no próprio app e em pagamento.
+                        </p>
+                        <p class="projeto-feito">Feito com Python, Streamlit e a API da Groq.</p>
+                        <div class="projeto-links">
+                            <a class="botao botao-cheio" href="https://avaliacoes-delivery.streamlit.app/">Abrir o app</a>
+                            <!-- TROCAR: link do repositório do analisador -->
+                            <a class="botao botao-linha" href="https://github.com/sofianaka/analisador-avaliacoes-delivery">Ver o código</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Projeto 2 -->
+                <article class="projeto">
+                    <div class="projeto-figura figura-estante" aria-hidden="true">
+                        <span style="height: 62%; background: #F4B8A0"></span>
+                        <span style="height: 84%; background: #5FA8A0"></span>
+                        <span style="height: 70%; background: #E0A458"></span>
+                        <span style="height: 90%; background: #F6EDE0"></span>
+                        <span style="height: 58%; background: #B79AC8"></span>
+                        <span style="height: 78%; background: #E07A5F" class="tombado"></span>
+                        <span style="height: 66%; background: #8FB8DE"></span>
+                        <span style="height: 88%; background: #9CBFA0"></span>
+                    </div>
+                    <div class="projeto-texto">
+                        <h3>Chat com artigos científicos</h3>
+                        <p>
+                            Você envia um artigo em PDF e pergunta em português. O app
+                            encontra os trechos que têm a ver com a pergunta e o modelo
+                            responde só com base neles, dizendo de que página tirou cada
+                            informação. É a técnica conhecida como RAG.
+                        </p>
+                        <p class="projeto-feito">Feito com Python, Streamlit, embeddings multilíngues e a API da Groq.</p>
+                        <div class="projeto-links">
+                            <!-- TROCAR: link do app e do repositório do chat com artigos -->
+                            <a class="botao botao-cheio" href="https://chat-artigos.streamlit.app/"">Abrir o app</a>
+                            <a class="botao botao-linha" href="https://github.com/sofianaka/chat-artigos-cientificos">Ver o código</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Projeto 3 -->
+                <article class="projeto">
+                    <div class="projeto-figura figura-conversa" aria-hidden="true">
+                        <span class="balao balao-pessoa">vocês têm Dom Casmurro?</span>
+                        <span class="balao balao-bot">Não consigo consultar o catálogo por aqui.</span>
+                        <span class="balao balao-pessoa">e o horário?</span>
+                    </div>
+                    <div class="projeto-texto">
+                        <h3>Bot de atendimento no Telegram</h3>
+                        <p>
+                            Um atendente virtual de uma biblioteca fictícia, montado no n8n
+                            com um agente de IA. Ele responde só com as informações que
+                            recebeu, admite quando não sabe e lembra do que a pessoa acabou
+                            de perguntar.
+                        </p>
+                        <p class="projeto-feito">Feito com n8n, Docker, Telegram e Gemini.</p>
+                        <div class="projeto-links">
+                            <!-- TROCAR: link do repositório do bot -->
+                            <a class="botao botao-cheio" href="https://github.com/sofianaka/bot-biblioteca-n8n">Ver o fluxo e o código</a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- ========== SOBRE ========== -->
+        <section class="secao secao-sobre" id="sobre">
+            <div class="miolo sobre-grade">
+                <div>
+                    <h2>Sobre mim</h2>
+                    <p>
+                        Estou na reta final de Engenharia da Computação e, nos últimos
+                        meses, mergulhei em IA generativa: como escrever um bom prompt,
+                        como fazer o modelo responder num formato que o código entende
+                        e como entregar a ele os documentos certos.
+                    </p>
+                    <p>
+                       Aprendo melhor fazendo, então cada assunto novo vira um projeto pequeno.
+                    </p>
+                </div>
+                <dl class="fatos">
+                    <dt>Formação</dt>
+                    <dd>Engenharia da Computação, UFPA, campus Castanhal. Formatura prevista pra agosto de 2027.</dd>
+                    <dt>Pesquisa</dt>
+                    <dd>Iniciação científica no Laboratório de Engenharia Biológica da UFPA, de 2025 a 2026, com bolsa do CNPq.</dd>
+                    <dt>Também estudo</dt>
+                    <dd>Visão computacional, computação em nuvem e Java, no bootcamp ElasTech do PagBank com a SoulCode.</dd>
+                </dl>
+            </div>
+        </section>
+    </main>
+
+    <!-- ========== RODAPÉ ========== -->
+    <footer class="rodape">
+        <div class="miolo">
+            <h2>Contato</h2>
+            <p>Estou no LinkedIn e no GitHub.</p>
+            <nav class="topo-links" aria-label="Contato">
+                <a class="botao botao-claro" href="https://www.linkedin.com/in/sofia-nakamaru/">LinkedIn</a>
+                <a class="botao botao-contorno" href="https://github.com/sofianaka">GitHub</a>
+            </nav>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
