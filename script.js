@@ -1,4 +1,5 @@
-
+// Desenha a rede neural do topo e anima um "sinal" passando por ela,
+// da camada de entrada até a de saída.
 
 const NEURONIOS_POR_CAMADA = [3, 5, 5, 2];
 const LARGURA = 420;
@@ -100,7 +101,7 @@ if (semAnimacao) {
 // Elementos que aparecem conforme a página rola
 // ---------------------------------------------------------------------
 const paraRevelar = document.querySelectorAll(
-    ".secao h2, .secao-intro, .projeto, .sobre-grade > *, .rodape .miolo"
+    "#projetos h2, .secao-intro, .projeto, .sobre-grade, .rodape .miolo"
 );
 
 if (!semAnimacao && "IntersectionObserver" in window) {
@@ -120,4 +121,24 @@ if (!semAnimacao && "IntersectionObserver" in window) {
         elemento.classList.add("revelar");
         observador.observe(elemento);
     });
+}
+
+// ---------------------------------------------------------------------
+// Estrelinhas espalhadas pelo topo, cada uma piscando no seu tempo.
+// São criadas aqui, sem mexer no index.html.
+// ---------------------------------------------------------------------
+const topo = document.querySelector(".topo");
+const CORES_ESTRELA = ["var(--pessego)", "var(--mostarda)", "var(--verde-agua)", "var(--lilas)"];
+
+for (let i = 0; i < 16; i++) {
+    const estrela = document.createElement("span");
+    estrela.className = "estrela";
+    estrela.textContent = "✦";
+    estrela.setAttribute("aria-hidden", "true");
+    estrela.style.left = `${Math.random() * 96}%`;
+    estrela.style.top = `${Math.random() * 92}%`;
+    estrela.style.fontSize = `${10 + Math.random() * 16}px`;
+    estrela.style.color = CORES_ESTRELA[i % CORES_ESTRELA.length];
+    estrela.style.animationDelay = `${Math.random() * 3}s`;
+    topo.appendChild(estrela);
 }

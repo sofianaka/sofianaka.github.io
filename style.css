@@ -1,13 +1,13 @@
 
 
 :root {
-    --escura: #2E1A47;       
-    --destaque: #6B3FA0;    
-    --papel: #F8F5FC;       
-    --papel-2: #ECE5F6;    
-    --linha: #DCD2EC;        
-    --tinta: #1F1630;       
-    --tinta-suave: #5E5470;  
+    --escura: #2E1A47;      
+    --destaque: #6B3FA0;     
+    --papel: #F8F5FC;        
+    --papel-2: #ECE5F6;      
+    --linha: #DCD2EC;      
+    --tinta: #1F1630;        
+    --tinta-suave: #5E5470; 
     --texto-claro: #DED5EE;  
 
     /* cores dos neurônios e dos desenhos */
@@ -240,4 +240,66 @@ a:focus-visible { outline: 3px solid var(--mostarda); outline-offset: 3px; }
     .revelar, .revelar .balao { opacity: 1; transform: none; scale: 1; }
     .revelar .figura-barras span { transform: none; }
     .revelar .figura-estante span { translate: 0 0; }
+}
+
+/* =====================================================================
+   "SOBRE MIM" EM DESTAQUE
+   Um cartão branco com sombra dura, que "salta" quando entra na tela.
+   ===================================================================== */
+.sobre-grade {
+    background: white;
+    border: 3px solid var(--escura);
+    border-radius: 26px;
+    box-shadow: 12px 12px 0 var(--destaque);
+    padding: 2.6rem;
+    max-width: 992px;                 /* 1040 menos as margens laterais */
+    transition: box-shadow 0.3s, translate 0.3s;
+}
+/* ao passar o mouse, o cartão levanta e a sombra cresce */
+.sobre-grade:hover { translate: -4px -4px; box-shadow: 18px 18px 0 var(--destaque); }
+
+/* entrada: começa menor e torto, e "pula" pro lugar */
+.sobre-grade.revelar {
+    opacity: 0;
+    transform: scale(0.82) rotate(-3deg);
+    transition: opacity 0.4s, transform 0.75s cubic-bezier(0.3, 1.6, 0.5, 1), box-shadow 0.3s, translate 0.3s;
+}
+.sobre-grade.revelar.visivel { opacity: 1; transform: none; }
+
+/* depois que o cartão pousa, os itens da lista entram um por um */
+.sobre-grade.revelar .fatos dt, .sobre-grade.revelar .fatos dd { opacity: 0; translate: 24px 0; transition: opacity 0.45s, translate 0.45s; }
+.sobre-grade.revelar.visivel .fatos dt, .sobre-grade.revelar.visivel .fatos dd { opacity: 1; translate: 0 0; }
+.sobre-grade.visivel .fatos > :nth-child(1), .sobre-grade.visivel .fatos > :nth-child(2) { transition-delay: 0.55s; }
+.sobre-grade.visivel .fatos > :nth-child(3), .sobre-grade.visivel .fatos > :nth-child(4) { transition-delay: 0.75s; }
+.sobre-grade.visivel .fatos > :nth-child(5), .sobre-grade.visivel .fatos > :nth-child(6) { transition-delay: 0.95s; }
+.sobre-grade.visivel .fatos > :nth-child(7), .sobre-grade.visivel .fatos > :nth-child(8) { transition-delay: 1.15s; }
+
+@media (max-width: 760px) {
+    .sobre-grade { padding: 1.6rem; margin: 0 1.2rem; box-shadow: 7px 7px 0 var(--destaque); }
+    .sobre-grade:hover { translate: 0 0; box-shadow: 7px 7px 0 var(--destaque); }
+}
+@media (prefers-reduced-motion: reduce) {
+    .sobre-grade.revelar, .sobre-grade.revelar .fatos dt, .sobre-grade.revelar .fatos dd { opacity: 1; transform: none; translate: 0 0; }
+}
+
+/* =====================================================================
+   ESTRELINHAS (criadas pelo script.js)
+   ===================================================================== */
+
+/* ---------- estrelinhas piscando no fundo do topo ---------- */
+.topo { position: relative; overflow: hidden; }
+.topo .miolo { position: relative; z-index: 1; }   /* o conteúdo fica na frente das estrelas */
+.estrela {
+    position: absolute;
+    pointer-events: none;
+    line-height: 1;
+    animation: piscar 3.2s ease-in-out infinite;
+}
+@keyframes piscar {
+    0%, 100% { opacity: 0.15; transform: scale(0.6) rotate(0deg); }
+    50%      { opacity: 0.9;  transform: scale(1) rotate(20deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .estrela { opacity: 0.5; }
 }
