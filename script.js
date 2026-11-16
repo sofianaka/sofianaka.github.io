@@ -1,5 +1,4 @@
-// Desenha a rede neural do topo e anima um "sinal" passando por ela,
-// da camada de entrada até a de saída.
+
 
 const NEURONIOS_POR_CAMADA = [3, 5, 5, 2];
 const LARGURA = 420;
@@ -43,6 +42,8 @@ const circulos = camadas.map((camada, c) =>
         circulo.setAttribute("cy", neuronio.y);
         circulo.setAttribute("r", 13);
         circulo.setAttribute("class", `neuronio camada-${c}`);
+        // cada camada aparece um pouco depois da anterior
+        circulo.style.animationDelay = `${0.5 + c * 0.18}s`;
         rede.appendChild(circulo);
         return circulo;
     })
@@ -53,8 +54,10 @@ function sortear(maximo) {
     return Math.floor(Math.random() * maximo);
 }
 
-function passarSinal(tempoEntreCamadas) {
+function passarSinal(tempoEntreCamadas, primeiroNeuronio) {
     const caminho = NEURONIOS_POR_CAMADA.map((quantidade) => sortear(quantidade));
+    // se a pessoa passou o mouse num neurônio de entrada, o sinal sai dele
+    if (primeiroNeuronio !== undefined) caminho[0] = primeiroNeuronio;
 
     caminho.forEach((neuronio, c) => {
         setTimeout(() => {
@@ -81,6 +84,40 @@ if (semAnimacao) {
         if (c > 0) ligacoes[c - 1][0][0].classList.add("ativa");
     });
 } else {
-    passarSinal(220);
-    setInterval(() => passarSinal(220), 1400);
+    // espera a rede terminar de se montar e começa a passar sinais
+    setTimeout(() => {
+        passarSinal(200);
+        setInterval(() => passarSinal(200), 1100);
+    }, 1400);
+
+    // passar o mouse (ou tocar) num neurônio de entrada dispara um sinal dali
+    circulos[0].forEach((circulo, n) => {
+        circulo.addEventListener("pointerenter", () => passarSinal(140, n));
+    });
+}
+
+// ---------------------------------------------------------------------
+// Elementos que aparecem conforme a página rola
+// ---------------------------------------------------------------------
+const paraRevelar = document.querySelectorAll(
+    ".secao h2, .secao-intro, .projeto, .sobre-grade > *, .rodape .miolo"
+);
+
+if (!semAnimacao && "IntersectionObserver" in window) {
+    const observador = new IntersectionObserver(
+        (entradas) => {
+            entradas.forEach((entrada) => {
+                if (entrada.isIntersecting) {
+                    entrada.target.classList.add("visivel");
+                    observador.unobserve(entrada.target); // anima uma vez só
+                }
+            });
+        },
+        { threshold: 0.2 } // dispara quando 20% do elemento está na tela
+    );
+
+    paraRevelar.forEach((elemento) => {
+        elemento.classList.add("revelar");
+        observador.observe(elemento);
+    });
 }
